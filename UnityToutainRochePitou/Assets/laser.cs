@@ -4,26 +4,18 @@ using UnityEngine;
 
 public class laser : MonoBehaviour
 {
-    public Vector3 direction_laser;
-    public Transform depart_laser;
-    public Material hit_color;
-    public Material no_hit_color;
-    public MeshRenderer indicateur;
-    public Transform end;
-    public GameObject recepteur;
-    public int nb_door;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Vector3 direction_laser;
+    [SerializeField] private Transform depart_laser;
+    [SerializeField] private Material hit_color;
+    [SerializeField] private Material no_hit_color;
+    [SerializeField] private MeshRenderer indicateur;
+    [SerializeField] private Transform end;
+    [SerializeField] private GameObject recepteur;
+    [SerializeField] private int nb_door;
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(depart_laser.position, direction_laser, Color.green);
-
-        Ray ray =new Ray(depart_laser.position,direction_laser);
+		Ray ray=new Ray(depart_laser.position,direction_laser);
 		RaycastHit hit;
 		if(Physics.Raycast(ray,out hit, 100))
 		{
@@ -37,7 +29,7 @@ public class laser : MonoBehaviour
                 end.position=hit.point;
                 return;
             }
-            door_controller.Instance.open_door(0);
+            room_manager.Instance.open_door(nb_door);
             indicateur.material=no_hit_color;
             end.position=hit.point;
         }
