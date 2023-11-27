@@ -22,7 +22,7 @@ public class room_manager : MonoBehaviour
         Animator door_anim=doors[nb].GetComponent<Animator>();
         if(nb!=0)
         {
-            //sols[nb].AddComponent<>();
+           // sols[nb].AddComponent<Teleportation Area>();
         }
         door_anim.SetTrigger("open");
     }
